@@ -1,14 +1,10 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        answer = [[n, i] for i, n in enumerate(nums)]
-        answer.sort()
-        l, r = 0, len(answer)-1
+        num_dict = {}
+        n = len(nums)
 
-        while l <= r:
-            sum = answer[l][0] + answer[r][0]
-            if sum > target:
-                r -= 1
-            elif sum < target:
-                l += 1
-            else:
-                return [answer[l][1], answer[r][1]]
+        for i in range(n):
+            to_find = target - nums[i]
+            if to_find in num_dict:
+                return [num_dict[to_find], i]
+            num_dict[nums[i]] = i
